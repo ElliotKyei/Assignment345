@@ -4,6 +4,7 @@
   "description": "Assignment 1 for WEB322",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Elliot Kyei",

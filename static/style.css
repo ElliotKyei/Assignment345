@@ -1,12 +1,9 @@
 h1 {
     text-align: center;
-    font-family: 'Cairo', sans-serif;
     font-size: 20em;
-    display: block;
     color: rgb(130, 240, 255);
   }
 
   h2 {
-
     font-size: 20em;
   }
