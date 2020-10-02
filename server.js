@@ -17,6 +17,17 @@ app.get("/home", function(req,res){
     res.sendFile(path.join(__dirname,"/views/home.html"));
   });
 
+  app.get("/mealpackage", function(req,res){
+    res.sendFile(path.join(__dirname,"/views/mealpackage.html"));
+  });
+
+  app.get("/signup", function(req,res){
+    res.sendFile(path.join(__dirname,"/views/signup.html"));
+  });
+
+  app.get("/login", function(req,res){
+    res.sendFile(path.join(__dirname,"/views/login.html"));
+  });
 
   app.use('/static', express.static('static'))
   app.use(express.static('./views'))
