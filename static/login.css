@@ -1,0 +1,58 @@
+.loginContainer{
+    padding-bottom: 50px;
+}
+
+.UsernameBox, .FirstNameBox, .LastNameBox, .EmailBox, .PasswordBox{
+   text-align: center;
+   margin-bottom: 30px;
+   margin-top: -100px;
+}
+
+.PasswordBox, .LoginBox, .SignUpBox{
+    text-align: center;
+    margin-bottom: 30px;
+ }
+.username, .pass{
+    height: 30px;
+width: 300px;
+font-size: 15px;
+}
+
+.login-btn, .signUp-btn{
+    height: 50px;
+    width: 300px; 
+    color:rgb(255, 255, 255);
+    background-color:rgb(53, 21, 29);
+    font-family: Verdana, Tahoma, sans-serif;
+    text-decoration: none; 
+    font-size: 18px;
+}
+
+.createAccount, .SignIn{
+    font-family: Verdana,Tahoma, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    color:rgb(78, 78, 78);
+    font-weight: 900;
+    word-spacing: 5px;
+}
+
+/* Registration */
+
+.boxLabel{
+    font-family: 'Palanquin Dark', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    color:gray;
+    font-size: 20px;
+    margin-right: 200px;
+}
+
+.boxInput{
+    height: 30px;
+    width: 300px;
+    font-size: 15px;
+    display: block;
+    margin-left: 564px;
+    margin-top: 5px;
+}

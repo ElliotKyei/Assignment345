@@ -40,21 +40,28 @@
   </head>
 
 <body>
-  <div class="loginContainer">
+  <div class="registerContainer">
     <form action="" method="POST">
-    <h6>Login</h6>
-    <div class="UsernameBox">
-      <input type="text" class="username boxInput" placeholder="Username" required="required">
+    <h6>Create Account</h6>
+    <div class="FirstNameBox">
+      <label for="first-name" class="first-name boxLabel">First Name</label>
+      <input type="text" id="first-name" class="first-name boxInput" required="required">
     </div> 
-    <div class="PasswordBox" style="margin-top: 0px;">
-      <input type="password" class="pass boxInput" placeholder="Password" required="required">
-    </div>
-  <div class="LoginBox">
-    <button type="submit" class="login-btn">Sign In</button>
+    <div class="LastNameBox" style="margin-top: -15px;" >
+      <label for="last-name" class="last-name boxLabel">Last Name</label>
+      <input type="text" id="last-name" class="last-name boxInput" required="required">
+    </div> 
+    <div class="EmailBox" style="margin-top: -15px;">
+      <label for="email" class="e-mail boxLabel" style="margin-right: 165px;">Email Address</label>
+      <input type="email" id="email" class="e-mail boxInput" required="required">
+    </div> 
+    <div class="PasswordBox" style="margin-top: -15px;" >
+      <label for="pass" class="password boxLabel">Password</label>
+      <input type="password" id="pass" class="password boxInput" required="required">
+    </div> 
+  <div class="SignUpBox">
+    <button type="submit" class="signUp-btn">Sign Up</button>
   </div>
-  <div class="createAccount">
-  <a href="signup.html">Create an account</a>
-</div>
 </form>
 
   </div><hr>
@@ -62,7 +69,7 @@
 
 <footer>
   <div class="hero">
-    <img src="/static/LoginPic.jpg" class="small-heroPic" alt="logo"/>
+    <img src="/static/SignUpPic.jpg" class="small-heroPic" alt="logo"/>
   </div>
 
   <div class="footerPayment">
@@ -90,6 +97,7 @@
     </form>
     
     </div>
-  
+
 </footer>
 </html>
+
