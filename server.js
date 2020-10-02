@@ -19,5 +19,6 @@ app.get("/Home", function(req,res){
     res.sendFile(path.join(__dirname,"/views/Home.html"));
   });
 
+  app.use('static', express.static(path.join(__dirname, 'public')))
 // setup http server to listen on HTTP_PORT
 app.listen(HTTP_PORT, onHttpStart);
