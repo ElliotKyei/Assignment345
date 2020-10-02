@@ -10,7 +10,7 @@ function onHttpStart() {
 }
 
 app.get("/", function(req,res){
-    res.send("Hello World<br /><a href='/home.html'>Go to the home page</a>");
+    res.send("Hello World<br /><a href='/views/home.html'>Go to the home page</a>");
 });
 
 app.get("/home", function(req,res){
@@ -19,6 +19,6 @@ app.get("/home", function(req,res){
 
 
   app.use('/static', express.static('static'))
-  //app.use(express.static('./views'))
+  app.use(express.static('./views'))
 
 app.listen(HTTP_PORT, onHttpStart);
