@@ -10,11 +10,11 @@ function onHttpStart() {
 }
 
 app.get("/", function(req,res){
-    res.send("Hello World<br /><a href='/home'>Go to the home page</a>");
+    res.send("Hello World<br /><a href='/home.html'>Go to the home page</a>");
 });
 
 app.get("/home", function(req,res){
-    res.sendFile(path.join(__dirname,"/views/home.html"));
+    res.sendFile(path.join(__dirname,"/home.html"));
   });
 
 
