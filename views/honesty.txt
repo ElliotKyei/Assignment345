@@ -1,0 +1,5 @@
+Student Name: Elliot Kyei
+Student ID: ekyei1@myseneca.ca
+Student #: 122982192
+
+Had assistance with the server.js code from sources in the WEB322 notes.
