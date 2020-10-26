@@ -5,23 +5,32 @@
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="/static/styles.css" />
     <link rel="stylesheet" type="text/css" href="/static/login.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@700&display=swap"
+      rel="stylesheet"
+    />
 
     <div>
-      <a href="home.html" title="Fresh Food Fix"> 
-    <img src="/static/Logo2.JPG" class="logo1" alt="logo" width="100" height="60" style="float: left;"/>
-  </a>
-    <span class="websiteTitle">Fresh Food Fix</span>
-  </div>
-   
-   <ul class="navigation">
-    <li><a href="home.html">Home</a></li>
-    <li><a href="mealpackage.html">Meal Package</a></li>
-    <li><a href="signup.html">Sign Up</a></li>
-    <li><a href="login.html">Login</a></li>
+      <a href="home.html" title="Fresh Food Fix">
+        <img
+          src="/static/Logo2.JPG"
+          class="logo1"
+          alt="logo"
+          width="100"
+          height="60"
+          style="float: left"
+        />
+      </a>
+      <span class="websiteTitle">Fresh Food Fix</span>
+    </div>
 
-   </ul>
-  
+    <ul class="navigation">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="mealpackage.html">Meal Package</a></li>
+      <li><a href="signup.html">Sign Up</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+
     <hr />
 
     <link
@@ -36,60 +45,64 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-
   </head>
 
-<body>
-  <div class="loginContainer">
-    <form action="" method="POST">
-    <h6>Login</h6>
-    <div class="UsernameBox">
-      <input type="text" class="username boxInput" placeholder="Username" required="required">
-    </div> 
-    <div class="PasswordBox" style="margin-top: 0px;">
-      <input type="password" class="pass boxInput" placeholder="Password" required="required">
+  <body>
+    <div class="loginContainer">
+      <form action="" method="POST">
+        <h6>Login</h6>
+        <div class="UsernameBox">
+          <input
+            type="text"
+            class="username boxInput"
+            placeholder="Username"
+            required="required"
+          />
+        </div>
+        <div class="PasswordBox" style="margin-top: 0px">
+          <input
+            type="password"
+            class="pass boxInput"
+            placeholder="Password"
+            required="required"
+          />
+        </div>
+        <div class="LoginBox">
+          <button type="submit" class="login-btn">Sign In</button>
+        </div>
+        <div class="createAccount">
+          <a href="signup.html">Create an account</a>
+        </div>
+      </form>
     </div>
-  <div class="LoginBox">
-    <button type="submit" class="login-btn">Sign In</button>
-  </div>
-  <div class="createAccount">
-  <a href="signup.html">Create an account</a>
-</div>
-</form>
+    <hr />
+  </body>
 
-  </div><hr>
-</body>
-
-<footer>
-  <div class="hero">
-    <img src="/static/LoginPic.jpg" class="small-heroPic" alt="logo"/>
-  </div>
-
-  <div class="footerPayment">
-    <ul>
-    <li class="menuItems">  
-    <span class="subTitle">We Accept</span>
-    <img src="/static/Payment1.png"  height="50" width="75"/>
-    <img src="/static/Payment2.png"  height="55" width="200"/>
-    </li>
-    </ul>
+  <footer>
+    <div class="hero">
+      <img src="/static/LoginPic.jpg" class="small-heroPic" alt="logo" />
     </div>
-    
-    <div class="newsletter">
-    <span class="subTitle">Subscribe to receive special coupons, new deals, and chance to win a $25 gift card</span>
-    <form action="https://formspree.io/xyydqgpw" method="POST">
-    <label class="subTitle">
-    Your Email:
-    <input class="emailSub" type="email" name="email" size="40" />
-    </label>
-    <input
-    class="subscribe"
-    type="submit"
-    value="Subscribe"
-    />
-    </form>
-    
+
+    <div class="footerPayment" style="margin-left: -100px;">
+      <ul>
+        <li class="Payments">
+          <span class="subTitle">We Accept</span>
+          <img src="/static/Payment1.png" height="50" width="75" />
+          <img src="/static/Payment2.png" height="55" width="200" />
+        </li>
+      </ul>
     </div>
   
-</footer>
+    <div class="newsletter" style="margin-top: -100px;">
+      <span class="subTitle">Subscribe to receive special coupons, new deals, and chance to win a $25 gift card</span>
+      <form action="https://formspree.io/xyydqgpw" method="POST">
+        <label class="subTitle">
+          Your Email:
+          <input class="emailSub" type="email" name="email" size="40" />
+        </label>
+        <input class="subscribe" type="submit" value="Subscribe" />
+      </form>
+  
+    </div>
+  </footer>
 </html>
