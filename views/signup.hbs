@@ -1,0 +1,179 @@
+{{!--<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/static/login.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <div>
+      <a href="home.html" title="Fresh Food Fix">
+        <img
+          src="/static/Logo2.JPG"
+          class="logo1"
+          alt="logo"
+          width="100"
+          height="60"
+          style="float: left"
+        />
+      </a>
+      <span class="websiteTitle">Fresh Food Fix</span>
+    </div>
+
+    <ul class="navigation">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="mealpackage.html">Meal Package</a></li>
+      <li><a href="signup.html">Sign Up</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+
+    <hr />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Baloo+Paaji+2|Crimson+Text|Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Cairo|Crimson+Text&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body> --}}
+
+    <div class="registerContainer" style="margin-top: -25px" >
+      <form action="/signup-user" method="POST">
+        <h6>Create Account</h6>
+        <div class="FirstNameBox">
+          <label for="first-name" class="first-name boxLabel">First Name</label>
+          <input
+            type="text"
+            id="first-name"
+            name = "firstname"
+            value="{{data.formData.firstname}}" 
+            placeholder="Your first name"
+            class="first-name boxInput"
+          >
+           {{#if data.errors.firstname}}
+                        <div class="my-feedback" style="color:red;margin-top:5px" > 
+                            <strong>Warning:</strong> {{data.errors.firstname}}
+                        </div>
+                      {{/if}}
+        </div>
+
+        <div class="LastNameBox" style="margin-top: -15px">
+          <label for="last-name" class="last-name boxLabel">Last Name</label>
+          <input
+            type="text"
+            id="last-name"
+            name = "lastname"
+            value="{{data.formData.lastname}}" 
+            placeholder="Your last name"
+            class="last-name boxInput"
+            >
+                   {{#if data.errors.lastname}}
+                        <div class="my-feedback" style="color:red;margin-top:5px" > 
+                            <strong>Warning:</strong> {{data.errors.lastname}}
+                        </div>
+                      {{/if}}
+        </div>
+        <div class="EmailBox" style="margin-top: -15px">
+          <label for="email" class="e-mail boxLabel" style="margin-right: 165px"
+            >Email Address</label
+          >
+          <input
+            type="email"
+            name = "email"
+            value="{{data.formData.email}}" 
+            placeholder="An email you'd like to use."
+            id="email"
+            class="e-mail boxInput"
+          >
+                     {{#if data.errors.email}}
+                        <div class="my-feedback" style="color:red;margin-top:5px" > 
+                            <strong>Warning:</strong> {{data.errors.email}}
+                        </div>
+                      {{/if}}
+        </div>
+        <div class="PasswordBox" style="margin-top: -15px">
+          <label for="password" class="password boxLabel"  style="margin-right: 210px">Password</label>
+          <input
+            type="password"
+            name = "password"
+            value="{{data.formData.password}}" 
+            placeholder="A password you'd like to use."
+            id="password"
+            class="password boxInput"
+          >
+
+                     {{#if data.errors.password}}
+                        <div class="my-feedback" style="color:red;margin-top:5px" > 
+                            <strong>Warning:</strong> {{data.errors.password}}
+                        </div>
+                      {{/if}}
+
+        </div>
+        <div class="PasswordBox" style="margin-top: -15px">
+          <label for="password2" class="password boxLabel"  style="margin-right: 125px">Confirm Password</label>
+          <input
+            type="password"
+            name = "password2"
+                       value="{{data.formData.password2}}" 
+            placeholder="Confirm Password"
+            id="password"
+            class="password boxInput"
+          >
+
+                     {{#if data.errors.password2}}
+                        <div class="my-feedback" style="color:red;margin-top:5px" > 
+                            <strong>Warning:</strong> {{data.errors.password2}}
+                        </div>
+                      {{/if}}
+
+        </div>
+        <div class="SignUpBox">
+          <button type="submit" class="signUp-btn">Sign Up</button>
+        </div>
+      </form>
+    </div>
+    <hr>
+    <div class="hero">
+      <img src="/static/SignUpPic.jpg" class="small-heroPic" alt="logo" />
+    </div>
+  {{!-- 
+  <footer>
+
+
+    <div class="footerPayment" style="margin-left: -100px;">
+      <ul>
+        <li class="Payments">
+          <span class="subTitle">We Accept</span>
+          <img src="/static/Payment1.png" height="50" width="75" />
+          <img src="/static/Payment2.png" height="55" width="200" />
+        </li>
+      </ul>
+    </div>
+  
+    <div class="newsletter" style="margin-top: -100px;">
+      <span class="subTitle">Subscribe to receive special coupons, new deals, and chance to win a $25 gift card</span>
+      <form action="https://formspree.io/xyydqgpw" method="POST">
+        <label class="subTitle">
+          Your Email:
+          <input class="emailSub" type="email" name="email" size="40" />
+        </label>
+        <input class="subscribe" type="submit" value="Subscribe" />
+      </form>
+  
+    </div>
+
+</html>
+
+--}}
