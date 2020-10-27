@@ -49,7 +49,7 @@
 
   <body> --}}
 
-    <div class="registerContainer" style="margin-top: -25px" >
+    <div class="registerContainer" style="margin-top:-50px" >
       <form action="/signup-user" method="POST">
         <h6>Create Account</h6>
         <div class="FirstNameBox">
@@ -59,69 +59,65 @@
             id="first-name"
             name = "firstname"
             value="{{data.formData.firstname}}" 
-            placeholder="Your first name"
             class="first-name boxInput"
           >
            {{#if data.errors.firstname}}
-                        <div class="my-feedback" style="color:red;margin-top:5px" > 
-                            <strong>Warning:</strong> {{data.errors.firstname}}
+                        <div class="errorMsg"> 
+                          {{data.errors.firstname}}
                         </div>
                       {{/if}}
         </div>
 
-        <div class="LastNameBox" style="margin-top: -15px">
+        <div class="LastNameBox" style="margin-top: -5px">
           <label for="last-name" class="last-name boxLabel">Last Name</label>
           <input
             type="text"
             id="last-name"
             name = "lastname"
             value="{{data.formData.lastname}}" 
-            placeholder="Your last name"
             class="last-name boxInput"
             >
                    {{#if data.errors.lastname}}
-                        <div class="my-feedback" style="color:red;margin-top:5px" > 
-                            <strong>Warning:</strong> {{data.errors.lastname}}
+                        <div class="errorMsg"style="color:red;margin-top:2px" > 
+                            {{data.errors.lastname}}
                         </div>
                       {{/if}}
         </div>
-        <div class="EmailBox" style="margin-top: -15px">
+        <div class="EmailBox" style="margin-top: -5px">
           <label for="email" class="e-mail boxLabel" style="margin-right: 165px"
             >Email Address</label
           >
           <input
-            type="email"
+            type="text"
             name = "email"
             value="{{data.formData.email}}" 
-            placeholder="An email you'd like to use."
             id="email"
             class="e-mail boxInput"
           >
                      {{#if data.errors.email}}
-                        <div class="my-feedback" style="color:red;margin-top:5px" > 
-                            <strong>Warning:</strong> {{data.errors.email}}
+                        <div class="errorMsg" style="color:red;margin-top:2px" > 
+                          {{data.errors.email}}
                         </div>
                       {{/if}}
         </div>
-        <div class="PasswordBox" style="margin-top: -15px">
+        <div class="PasswordBox" style="margin-top: -5px">
           <label for="password" class="password boxLabel"  style="margin-right: 210px">Password</label>
           <input
             type="password"
             name = "password"
             value="{{data.formData.password}}" 
-            placeholder="A password you'd like to use."
             id="password"
             class="password boxInput"
           >
 
                      {{#if data.errors.password}}
-                        <div class="my-feedback" style="color:red;margin-top:5px" > 
-                            <strong>Warning:</strong> {{data.errors.password}}
+                        <div class="errorMsg" style="color:red;margin-top:2px" > 
+                            {{data.errors.password}}
                         </div>
                       {{/if}}
 
         </div>
-        <div class="PasswordBox" style="margin-top: -15px">
+        <div class="PasswordBox" style="margin-top: -5px">
           <label for="password2" class="password boxLabel"  style="margin-right: 125px">Confirm Password</label>
           <input
             type="password"
@@ -133,8 +129,8 @@
           >
 
                      {{#if data.errors.password2}}
-                        <div class="my-feedback" style="color:red;margin-top:5px" > 
-                            <strong>Warning:</strong> {{data.errors.password2}}
+                        <div class="errorMsg" style="color:red;margin-top:2px" > 
+                          {{data.errors.password2}}
                         </div>
                       {{/if}}
 

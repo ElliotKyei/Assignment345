@@ -5,7 +5,7 @@
 .UsernameBox, .FirstNameBox, .LastNameBox, .EmailBox, .PasswordBox{
    text-align: center;
    margin-bottom: 30px;
-   margin-top: -100px;
+   margin-top: -120px;
 }
 
 .PasswordBox, .LoginBox, .SignUpBox{
@@ -54,5 +54,13 @@ font-size: 15px;
     font-size: 15px;
     display: block;
     margin-left: 564px;
-    margin-top: 5px;
+}
+
+.errorMsg{
+    color:red;
+    padding-top:10px;
+    font-family: "Verdana";
+    font-size: 13px;
+    position: absolute;
+    left: 580px;
 }

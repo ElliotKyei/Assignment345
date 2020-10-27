@@ -87,8 +87,7 @@ app.post("/signup-user",  (req, res) => {
   } else {
       // dataService.registerUser(req.body);
       res.send("<h5> User" + req.body.firstname + " was registered!</h5>" 
-               + "<p><a href='/userformbs'>Register more user</a></p>"
-               + "<p><a href='/getData2'>Go to User List page</a></p>");
+               + "<p><a href='/'>Go back to Home page</a></p>");
   }
 
   });

@@ -54,7 +54,7 @@ module.exports.getTopMealPackages = function () {
 
 
 module.exports.validateUserForm = function(formData){
-    var errors = {isValid: true, firstname: "", lasttname: "", email: "", password: "", password2: ""};
+    var errors = {isValid: true, firstname: "", lastname: "", email: "", password: "", password2: ""};
 
     validateUserFormFirstName(formData.firstname, errors);
     validateUserFormLastName(formData.lastname, errors);
@@ -68,7 +68,7 @@ module.exports.validateUserForm = function(formData){
 function validateUserFormFirstName(input, errors){
     if(!input.trim()){
         errors.isValid = false;
-        errors.firstname += "First name is required. "
+        errors.firstname += "First name is required "
         return;
     }
 
@@ -77,22 +77,25 @@ function validateUserFormFirstName(input, errors){
 function validateUserFormLastName(input, errors){
     if(!input.trim()){
         errors.isValid = false;
-        errors.lastname += "First name is required. "
+        errors.lastname += "Last name is required "
         return;
     }
 
 }
 
 function validateUserFormEmail(input, errors){
+
+    const reg = /^[^@]+@[^@]+\.[^@]+$/;
+
     if(!input.trim()){
         errors.isValid = false;
-        errors.email += "Email field is required. "
+        errors.email += "Email field is required "
         return;
     }
 
-    if(!input.includes("@myseneca.ca")){
+    if(!input.match(reg)){
         errors.isValid = false;
-        errors.email += "Please enter a valid email."
+        errors.email += "Please enter a valid email "
         return;
     }
 }
@@ -100,25 +103,25 @@ function validateUserFormEmail(input, errors){
 function validateUserFormPassword(input, input2, errors){
     if(!input.trim()){
         errors.isValid = false;
-        errors.password += "Password field is required. "
+        errors.password += "Password field is required "
         return;
     }
 
     if(input.length<4){ 
         errors.isValid = false;
-        errors.password += "Password must contain at least 4 characters. "
+        errors.password += "Password must contain at least 4 characters "
         return;
     }
 
     if(!input2.trim()){
         errors.isValid = false;
-        errors.password2 += "Confirm Password field is required. "
+        errors.password2 += "Confirm Password field is required "
         return;
     }
 
     if(!(input===input2)){
         errors.isValid = false;
-        errors.password2 += "Password do not match."
+        errors.password2 += "The passwords do not match "
         return;
     }
 }
