@@ -52,6 +52,19 @@ module.exports.getTopMealPackages = function () {
     return topMealPackages;
 }
 
+var users = [{
+    firstname: "Elliot", lastname: "Kyei", email: "elliotkyei@gmail.com", password: "abc123", password2: "abc123"
+}];
+
+module.exports.getAllUsers = function(){
+    return users;
+}
+
+module.exports.registerUser = function(user){
+    users.push(user);
+    console.log("users:", users)
+}
+
 
 module.exports.validateUserForm = function(formData){
     var errors = {isValid: true, firstname: "", lastname: "", email: "", password: "", password2: ""};
@@ -63,6 +76,16 @@ module.exports.validateUserForm = function(formData){
     // console.log("errors in validateUserForm()", errors)
     ;
     return errors;
+}
+
+
+module.exports.validateLoginForm = function(formData){
+    var loginErrors = {isValid: true, loginEmail: "", loginPass: ""};
+
+    validateLoginDetails(formData.loginEmail, formData.loginPass, loginErrors);
+    // console.log("errors in validateUserForm()", errors)
+    ;
+    return loginErrors;
 }
 
 function validateUserFormFirstName(input, errors){
@@ -85,7 +108,7 @@ function validateUserFormLastName(input, errors){
 
 function validateUserFormEmail(input, errors){
 
-    const reg = /^[^@]+@[^@]+\.[^@]+$/;
+    const emailReg = /^[^@]+@[^@]+\.[^@]+$/;
 
     if(!input.trim()){
         errors.isValid = false;
@@ -93,7 +116,7 @@ function validateUserFormEmail(input, errors){
         return;
     }
 
-    if(!input.match(reg)){
+    if(!input.match(emailReg)){
         errors.isValid = false;
         errors.email += "Please enter a valid email "
         return;
@@ -101,6 +124,8 @@ function validateUserFormEmail(input, errors){
 }
 
 function validateUserFormPassword(input, input2, errors){
+    const passReg = /^[A-Za-z0-9]+$/;
+
     if(!input.trim()){
         errors.isValid = false;
         errors.password += "Password field is required "
@@ -113,9 +138,9 @@ function validateUserFormPassword(input, input2, errors){
         return;
     }
 
-    if(!input2.trim()){
+    if(!input.match(passReg)){
         errors.isValid = false;
-        errors.password2 += "Confirm Password field is required "
+        errors.password += "Password can only contain letters and numbers "
         return;
     }
 
@@ -126,7 +151,37 @@ function validateUserFormPassword(input, input2, errors){
     }
 }
 
-module.exports.validateLoginForm = function(data){
-    return true;
+function validateLoginDetails(input, input2, loginErrors){
+
+    if(!input.trim()){
+        loginErrors.isValid = false;
+        loginErrors.loginEmail += "Email field is required "
+        return;
+    }
+
+    if(!input2.trim()){
+        loginErrors.isValid = false;
+        loginErrors.loginPass += "Password field is required "
+        return;
+    }
+    if (users === undefined || users.length == 0) {
+       return;
+    }
+    else{
+        users.forEach(function(element) {
+            if (input===element.email || input2===element.password){
+               // console.log("Undefined list not caught")
+                errors.isValid = false;
+                errors.loginPass += "The Email or Password was not correct, try again "
+                return;
+            }
+    });
 }
 
+/* else if (!input===element.email || !input2===element.password){
+    console.log("Undefined list not caught")
+    errors.isValid = false;
+    errors.loginPass += "The Email or Password was not correct, try again "
+    return;
+} */
+}

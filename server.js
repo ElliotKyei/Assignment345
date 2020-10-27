@@ -51,13 +51,6 @@ app.get("/login",  (req, res) => {
     });
 });
 
-/* app.get("/registerSuccess",  (req, res) => {
-  res.render('registerSuccess', {
-      data: { }
-     
-  });
-}); */
-
 app.post("/signup-user",  (req, res) => {
   var formData = req.body;
   var errors = dataService.validateUserForm(formData)
@@ -70,7 +63,7 @@ app.post("/signup-user",  (req, res) => {
    
   } 
   else {
-      // dataService.registerUser(req.body);
+      dataService.registerUser(req.body);
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -83,9 +76,10 @@ app.post("/signup-user",  (req, res) => {
         from: 'FreshFoodFix.2020@gmail.com',
         to: formData.email,
         subject: 'Welcome to Fresh Food Fix',
-        text: 'Hello '+formData.firstname+'\n\nYour sign up was successful. We are so excited to have you apart of our community!'
+        text: 'Hello '+formData.firstname+',\n\nYour sign up was successful. We are so excited to have you apart of our community!'
         +'\nPlease feel free to reply back with any question or concerns you may have'
-        +'\n\nFresh Food Fix'
+        +'\n\nBest Regards,'
+        +'\nFresh Food Fix'
       };
     
       transporter.sendMail(mailOptions, function(error, info){
@@ -97,13 +91,31 @@ app.post("/signup-user",  (req, res) => {
       });
 
       res.render('registerSuccess', {
-        data: {"formData": formData, "errors": errors},
         layout: false
   });
 
 }
 
   });
+
+  app.post("/login-user",  (req, res) => {
+    var formData = req.body;
+    var users = dataService.getAllUsers()
+    var errors = dataService.validateLoginForm(formData)
+  
+    if (!errors.isValid) {
+        res.render('login', {
+            data: {"formData": formData, "errors": errors}
+        });
+     
+    } 
+    else {
+      console.log("User data PASS IS "+ formData.loginPass + " PASS FOUND IS " + formData.password);
+      res.render('loginSuccess', {
+        layout: false
+  });
+  }
+});
   
   app.use((req, res) => {
     res.status(404).send("Page Not Found");

@@ -1,22 +1,36 @@
 
     <div class="loginContainer">
-      <form action="" method="POST">
+      <form action="/login-user" method="POST">
         <h6>Login</h6>
         <div class="UsernameBox">
           <input
             type="text"
+            name = "loginEmail"
+            value="{{data.formData.loginEmail}}" 
             class="username boxInput"
-            placeholder="Username"
-            required="required"
+            placeholder="Email"
           />
+                        {{#if data.errors.loginEmail}}
+                        <div class="errorMsg"> 
+                          {{data.errors.loginEmail}}
+                        </div>
+                      {{/if}}
         </div>
-        <div class="PasswordBox" style="margin-top: 0px">
+        <div class="PasswordBox" style="margin-top: 35px">
           <input
             type="password"
+            name = "loginPass"
+            value="{{data.formData.loginPass}}" 
             class="pass boxInput"
             placeholder="Password"
-            required="required"
           />
+
+                      {{#if data.errors.loginPass}}
+                        <div class="errorMsg"> 
+                          {{data.errors.loginPass}}
+                        </div>
+                      {{/if}}
+
         </div>
         <div class="LoginBox">
           <button type="submit" class="login-btn">Sign In</button>

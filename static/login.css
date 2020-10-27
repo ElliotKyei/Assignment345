@@ -10,7 +10,7 @@
 
  .LoginBox{
     text-align: center;
-    margin-top: 30px;
+    margin-top: 40px;
  }
 
 .SignUpBox{
@@ -70,14 +70,14 @@ font-size: 15px;
     left: 580px;
 }
 
-.registerSuccess{
+.registerSuccess, .loginSuccess{
     padding-top: 55px;
     padding-bottom: 75px;
     border: thin solid black;
     border-spacing: 15px;
 }
 
-#register{
+#register, #login{
     font-family: 'Montserrat', sans-serif;
     color:gray;
     word-spacing: 5px;  
