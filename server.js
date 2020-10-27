@@ -2,7 +2,9 @@ var path = require("path");
 var express = require("express");
 const bodyParser = require('body-parser');
 const dataService = require('./data-service');
+var nodemailer = require('nodemailer');
 var app = express();
+
 
 var HTTP_PORT = process.env.PORT || 8081;
 
@@ -15,31 +17,7 @@ const exphbs = require("express-handlebars");
 
 app.engine('.hbs', exphbs({ 
   extname: '.hbs',
-  defaultLayout: 'main',
-  helpers: { 
-      // helper1: function(options){
-      //     // helper without "context", ie {{#helper}} ... {{/helper}}
-      // },
-      strong: function(options){
-          return '<strong>' + options.fn(this) + '</strong>';
-      },
-  
-
-      // helper2: function(context, options){
-      //     // helper with "context", ie {{#helper context}} ... {{/helper}}
-      // }
-      list: function(context, options) {
-          var ret = "<ul>";
-          
-          for(var i = 0; i < context.length; i++) {
-              ret = ret + "<li>" + options.fn(context[i]) + "</li>";
-          }
-          
-          return ret + "</ul>";
-      }
-      
-      
-  }
+  defaultLayout: 'main'
 }));
 
 app.set("view engine", ".hbs");
@@ -62,17 +40,23 @@ app.get("/mealpackage",  (req, res) => {
 
 app.get("/login",  (req, res) => {
   res.render('login', {
-      data: { }
-      // ,layout: false // do not use the default Layout (main.hbs)
+      data: { },
+
   });
 });
 
   app.get("/signup",  (req, res) => {
     res.render('signup', {
         data: { }
-       
     });
 });
+
+/* app.get("/registerSuccess",  (req, res) => {
+  res.render('registerSuccess', {
+      data: { }
+     
+  });
+}); */
 
 app.post("/signup-user",  (req, res) => {
   var formData = req.body;
@@ -84,11 +68,40 @@ app.post("/signup-user",  (req, res) => {
      
       });
    
-  } else {
+  } 
+  else {
       // dataService.registerUser(req.body);
-      res.send("<h5> User" + req.body.firstname + " was registered!</h5>" 
-               + "<p><a href='/'>Go back to Home page</a></p>");
-  }
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'FreshFoodFix.2020@gmail.com',
+          pass: 'freshfood123/'
+        }
+      });
+      
+      var mailOptions = {
+        from: 'FreshFoodFix.2020@gmail.com',
+        to: formData.email,
+        subject: 'Welcome to Fresh Food Fix',
+        text: 'Hello '+formData.firstname+'\n\nYour sign up was successful. We are so excited to have you apart of our community!'
+        +'\nPlease feel free to reply back with any question or concerns you may have'
+        +'\n\nFresh Food Fix'
+      };
+    
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+
+      res.render('registerSuccess', {
+        data: {"formData": formData, "errors": errors},
+        layout: false
+  });
+
+}
 
   });
   

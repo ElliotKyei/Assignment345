@@ -8,9 +8,14 @@
    margin-top: -120px;
 }
 
-.PasswordBox, .LoginBox, .SignUpBox{
+ .LoginBox{
     text-align: center;
-    margin-bottom: 30px;
+    margin-top: 30px;
+ }
+
+.SignUpBox{
+    text-align: center;
+    margin-top: 35px;
  }
 .username, .pass{
     height: 30px;
@@ -63,4 +68,20 @@ font-size: 15px;
     font-size: 13px;
     position: absolute;
     left: 580px;
+}
+
+.registerSuccess{
+    padding-top: 55px;
+    padding-bottom: 75px;
+    border: thin solid black;
+    border-spacing: 15px;
+}
+
+#register{
+    font-family: 'Montserrat', sans-serif;
+    color:gray;
+    word-spacing: 5px;  
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: -20px;
 }

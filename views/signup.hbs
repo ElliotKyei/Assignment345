@@ -78,7 +78,7 @@
             class="last-name boxInput"
             >
                    {{#if data.errors.lastname}}
-                        <div class="errorMsg"style="color:red;margin-top:2px" > 
+                        <div class="errorMsg"> 
                             {{data.errors.lastname}}
                         </div>
                       {{/if}}
@@ -95,7 +95,7 @@
             class="e-mail boxInput"
           >
                      {{#if data.errors.email}}
-                        <div class="errorMsg" style="color:red;margin-top:2px" > 
+                        <div class="errorMsg"=> 
                           {{data.errors.email}}
                         </div>
                       {{/if}}
@@ -111,7 +111,7 @@
           >
 
                      {{#if data.errors.password}}
-                        <div class="errorMsg" style="color:red;margin-top:2px" > 
+                        <div class="errorMsg"> 
                             {{data.errors.password}}
                         </div>
                       {{/if}}
@@ -122,14 +122,13 @@
           <input
             type="password"
             name = "password2"
-                       value="{{data.formData.password2}}" 
-            placeholder="Confirm Password"
+            value="{{data.formData.password2}}" 
             id="password"
             class="password boxInput"
           >
 
                      {{#if data.errors.password2}}
-                        <div class="errorMsg" style="color:red;margin-top:2px" > 
+                        <div class="errorMsg" > 
                           {{data.errors.password2}}
                         </div>
                       {{/if}}
