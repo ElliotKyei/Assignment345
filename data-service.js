@@ -1,45 +1,65 @@
 //Top Meal Packages
 
-let TopMealPackage = [
+var topMealPackages = [
 {
-    name: "Chicken Breast with Tomatoes", 
-    price: 10.99
+    title: "Chicken Breast with Tomatoes", 
+    price: 10.99,
+    imgURL: "/static/Meal1.jpg",
+    isTopPackage: true
 },
 {
-    name: "Pea and Spinach Carbonara", 
-    price: 10.99
+    title: "Pea and Spinach Carbonara", 
+    price: 10.99,
+    imgURL: "/static/Meal2.jpg",
+    isTopPackage: true
 },
 {
-    name: "Potato Salad with Mackeral", 
-    price: 11.99
+    title: "Potato Salad with Mackeral", 
+    price: 11.99,
+    imgURL: "/static/Meal3.jpg",
+    isTopPackage: true
 },
 {
-    name: "Beef and Vegetable Stir Fry", 
-    price: 12.99
+    title: "Beef and Vegetable Stir Fry", 
+    price: 12.99,
+    imgURL: "/static/Meal4.jpg",
+    isTopPackage: true
 }];
 
 // Meal Package Listings
 
-let MealPackageListing =  [
+var mealPackages =  [
 {
-name: "Muscle Gain", 
-description: "4 meals of lean cuts of meats, fish, eggs and poultry, which are very high in protein and calories, low in carbs",
-price: 25.99
+title: "Muscle Gain", 
+price: 25.99,
+category: "meats, fish, eggs and poultry",
+numberOfMeals: 4,
+mealContent: "4 meals of lean cuts of meats, fish, eggs and poultry, which are very high in protein and calories, low in carbs",
+imgURL: "/static/MealPackage1.jpg"
 },
 {
-name: "Weight Loss", 
-description: "7 small meals of very lean and nutritious cuts of meat, whole wheat grains, fruits and vegetables. Each meal is high in protein and low in carbs & calories",
-price: 27.99
+title: "Weight Loss", 
+price: 27.99,
+category: "lean and nutritious cuts of meat, whole wheat grains, fruits and vegetables",
+numberOfMeals: 7,
+mealContent: "7 small meals of very lean and nutritious cuts of meat, whole wheat grains, fruits and vegetables. Each meal is high in protein and low in carbs & calories",
+imgURL: "/static/MealPackage2.jpg"
 },
 {
-name: "Keto", 
-description: "4 meals featuring nuts, lean meats and fish, fruits and vegetables. Each meal is high in healthy fats with adequate protein, and minimal in carbs & calories",
-price: 25.99
+title: "Keto", 
+price: 25.99,
+category: "nuts, lean meats and fish, fruits and vegetables",
+numberOfMeals: 4,
+mealContent: "4 meals featuring nuts, lean meats and fish, fruits and vegetables. Each meal is high in healthy fats with adequate protein, and minimal in carbs & calories",
+imgURL: "/static/MealPackage3.jpg"
 },
 {
-name: "Paleo", 
-description: "4 meals of lean meats and fish, whole wheat grains, fruits and vegetables. Each meal is moderate in protein, carbs, and healthy fats. 100% All Natural Produce",
-price: 25.99
+title: "Paleo", 
+price: 25.99,
+category: "lean meats and fish, whole wheat grains, fruits and vegetables",
+numberOfMeals: 4,
+mealContent: "4 meals of lean meats and fish, whole wheat grains, fruits and vegetables. Each meal is moderate in protein, carbs, and healthy fats. 100% All Natural Produce",
+imgURL: "/static/MealPackage4.jpg"
 }];
 
 module.exports.getMealPackages = function(){
@@ -47,8 +67,6 @@ module.exports.getMealPackages = function(){
 }
 
 module.exports.getTopMealPackages = function () {
-    var topMealPackages = [];
-    //...
     return topMealPackages;
 }
 
@@ -164,7 +182,7 @@ function validateLoginDetails(input, input2, loginErrors){
         loginErrors.loginPass += "Password field is required "
         return;
     }
-    if (users === undefined || users.length == 0) {
+/*     if (users === undefined || users.length == 0) {
        return;
     }
     else{
@@ -176,12 +194,5 @@ function validateLoginDetails(input, input2, loginErrors){
                 return;
             }
     });
-}
-
-/* else if (!input===element.email || !input2===element.password){
-    console.log("Undefined list not caught")
-    errors.isValid = false;
-    errors.loginPass += "The Email or Password was not correct, try again "
-    return;
 } */
 }

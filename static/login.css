@@ -58,7 +58,7 @@ font-size: 15px;
     width: 300px;
     font-size: 15px;
     display: block;
-    margin-left: 564px;
+    margin-left: 404px;
 }
 
 .errorMsg{
@@ -67,7 +67,7 @@ font-size: 15px;
     font-family: "Verdana";
     font-size: 13px;
     position: absolute;
-    left: 580px;
+    left: 440px;
 }
 
 .registerSuccess, .loginSuccess{

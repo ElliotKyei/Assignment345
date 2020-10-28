@@ -28,13 +28,15 @@ function onHttpStart() {
 
 
 app.get("/", function(req,res){
-  res.render('home');
+  res.render('home', {
+    data: dataService.getTopMealPackages()
+});
 });
 
 app.get("/mealpackage",  (req, res) => {
+  
   res.render('mealpackage', {
-      data: { }
-      // ,layout: false // do not use the default Layout (main.hbs)
+      data: dataService.getMealPackages()
   });
 });
 
@@ -110,7 +112,6 @@ app.post("/signup-user",  (req, res) => {
      
     } 
     else {
-      console.log("User data PASS IS "+ formData.loginPass + " PASS FOUND IS " + formData.password);
       res.render('loginSuccess', {
         layout: false
   });

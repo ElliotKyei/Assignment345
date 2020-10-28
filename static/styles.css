@@ -1,3 +1,5 @@
+
+
 html{
   background-color: rgb(255, 255, 255);
 }
@@ -26,7 +28,7 @@ h1 {
     color:rgb(0, 0, 0);
     font-weight: 1000;
     word-spacing: 5px;  
-    font-size: 3.5em;
+    font-size: 2.5em;
     text-align: center;
     padding: 10px;
     font-weight: bolder;
@@ -37,7 +39,7 @@ h1 {
     color:rgb(255, 190, 106);
     font-weight: 900;
     word-spacing: 5px;  
-    font-size: 2em;
+    font-size: 1.3em;
 padding-left: 55px;
 text-align: center;
   }
@@ -55,7 +57,7 @@ text-align: center;
   }
 
   h5 {
-    position: absolute;
+margin-bottom: 50px;
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
     color:rgb(53, 21, 29);
@@ -73,7 +75,8 @@ text-align: center;
     text-decoration: none;
     color:rgb(0, 0, 0); 
     font-size: 50px;
-   margin-top: 50px;
+   margin-top: 15px;
+   padding-bottom: 150px;
   }
   
   hr {
@@ -82,12 +85,6 @@ text-align: center;
     border-width:0;
     color:gray;
     background-color:gray
-  }
-
-  .logo1{
-    
-    padding-left: 150px;
-    padding-right: 200px;
   }
 
   ul.navigation {
@@ -103,7 +100,12 @@ text-align: center;
 
     overflow: hidden;
   }
-
+.menu{
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: none;
+}
   .hero{
       position: relative;
       text-align: center;
@@ -111,19 +113,21 @@ text-align: center;
     
   }
   .heroPic{
-   margin-top: -10px;
-   margin-left: -8px;
-    height: 650px;
-    width: 1452px;
-
+    background-position: center;  
+    width:100%;
+    height:550px;
+    background-position-x: 50px;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
 }
 
 .small-heroPic{
   margin-top: 0px;
   margin-left: -8px;
    height: 350px;
-   width: 1452px;
-
+   width: 1000px;
+margin-bottom: 20px;
 }
 
 .imgText{
@@ -135,9 +139,10 @@ text-align: center;
   color:rgb(255, 255, 255);
   font-weight: 1000;
   word-spacing: 5px;  
-  font-size: 5em;
+  font-size: 3.5em;
   font-weight: bolder;
   transform: translate(-50%, -50%);
+  text-align: center;
 }
   
   li {
@@ -171,21 +176,24 @@ text-align: center;
   border-color: rgb(53, 21, 29);
 }
 
-.hiw-container, .top-packages-container{
+.hiw-container{
   display: grid;
   grid-template-columns: auto auto auto auto;
   margin-right: 200px;
   padding-left: 200px;
 }
 
-.top-packages-container{
+.top-packages{
   display: grid;
   grid-template-columns: auto auto auto auto;
-  grid-column-gap: 30px;
+  grid-column-gap: 0px;
+  margin: auto;
   margin-left: -75px;
+  padding-left: 100px;
+  
 }
 
-.meal-packages-container{
+.meal-packages-container {
   display: grid;
   grid-template-columns: auto auto auto auto;
   grid-column-gap: 0px;
@@ -194,22 +202,13 @@ text-align: center;
   padding-left: 100px;
 }
 
-.hiw-ChoosePic, .hiw-PreparePic, .hiw-DeliveryPic, .hiw-EnjoyPic, .meal-1-Pic, .meal-2-Pic, .meal-3-Pic, 
-.meal-4-Pic, .package-1-Pic, .package-2-Pic, .package-3-Pic, .package-4-Pic{
-  vertical-align: top;
-  display: inline-block;
-  text-align: center;
-  margin: auto;
-  width: 250px;
-  padding-top: 20px;
-}
-
 .caption, .caption-meals{
   padding-top: 15px;
   font-family: 'Montserrat', sans-serif;
   display: block;
   color:rgb(53, 21, 29);
   font-size: 1em;
+ text-align: "center";
 }
 
 .caption-package {
@@ -272,11 +271,24 @@ padding-left: 150px;
   background-color:gray
 }
 
+.How-It-Works{
+  margin-top: 50px;
+  margin-bottom: 25px;
+  border: thin solid black;
+  padding: 25px;
+  border-radius: 50px;
+  background-color: rgb(255, 253, 246);
+}
+
 
 .newsletter{
+  margin-bottom: 100px;
   float: right;
 }
 
+.footerMeals{
+ background-color: rgb(255, 108, 115);
+}
 .subscribe{
   border-radius: 25px;
   background-color: rgb(255, 108, 115);
@@ -285,3 +297,4 @@ padding-left: 150px;
   color: white;
   font-size: 15px;
 }
+
