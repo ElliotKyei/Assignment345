@@ -1,3 +1,17 @@
+/*********************************************************************************
+* WEB322 – Assignment 02
+* I declare that this assignment is my own work in accordance with Seneca Academic Policy. No part
+* of this assignment has been copied manually or electronically from any other source
+* (including 3rd party web sites) or distributed to other students.
+*
+* Name: Elliot Kyei Student ID: 122982192 Date: 10/27/2020
+*
+* Online (Heroku, https://...) Link: https://gentle-depths-73284.herokuapp.com/
+*
+* GitHub or Bitbucket repo Link: https://github.com/ElliotKyei/Assignment-2
+*
+********************************************************************************/
+
 var path = require("path");
 var express = require("express");
 const bodyParser = require('body-parser');
