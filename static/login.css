@@ -17,13 +17,14 @@
     text-align: center;
     margin-top: 35px;
  }
+ 
 .username, .pass{
     height: 30px;
 width: 300px;
 font-size: 15px;
 }
 
-.login-btn, .signUp-btn{
+.login-btn, .signUp-btn, .submit-btn{
     height: 50px;
     width: 300px; 
     color:rgb(255, 255, 255);
@@ -61,6 +62,25 @@ font-size: 15px;
     margin-left: 404px;
 }
 
+.dataEntry{
+    width: 300px;
+    font-size: 15px;
+    display: block;
+    margin-left: 250px;
+    top: -30px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.DE_Label{
+    font-family: 'Palanquin Dark', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    color:gray;
+    font-size: 15px;
+    margin-right: 200px;
+}
+
 .errorMsg{
     color:red;
     padding-top:10px;
@@ -68,6 +88,25 @@ font-size: 15px;
     font-size: 13px;
     position: absolute;
     left: 440px;
+}
+
+.DE_errorMsg{
+    color:red;
+   
+    font-family: "Verdana";
+    font-size: 13px;
+    position: absolute;
+    left: 285px;
+   margin-top: -30px;
+}
+
+.DE_PhotoErrorMsg{
+    color:red;
+    font-family: "Verdana";
+    font-size: 13px;
+    position: absolute;
+    left: 50px;
+   padding: 10px;
 }
 
 .registerSuccess, .loginSuccess{

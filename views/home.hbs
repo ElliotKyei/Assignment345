@@ -76,6 +76,15 @@
           <span class="caption-meals">${{data.3.price}}</span>
         </div>
 
+                 {{#each dataEntry}}
+                 {{#if dataEntry.isTopPackage}}
+           <div class="col-md-3" id="createdMeals">
+            <h5>{{title}}</h5>
+          <img src="/public/photos/{{imageURL}}" height="250" width="250" />
+          <span class="caption-package">{{mealContent}}<br /><br />${{price}}</span>
+        </div>
+        {{/if}}
+      {{/each}}
        </div>
       </div>
 

@@ -1,0 +1,22 @@
+
+  <section  style="margin-bottom: 20px;" class="package-section">
+
+
+
+      <h4 >List of all created meal packages.</h4><br>
+    
+    <div style="text-align: center;" class="container-fluid">
+      <div  class="row">
+        {{#each data}}
+           <div class="col-md-3" id="createdMeals">
+            <h5>{{title}}</h5>
+          <img src="/public/photos/{{imageURL}}" height="250" width="250" />
+          <span class="caption-package">{{mealContent}}<br /><br />${{price}}</span>
+          <span><a href="/dataEntryDashboard">Edit</a></span>
+        </div>
+      {{/each}}
+      </div>
+
+      
+    </div>
+  </section>

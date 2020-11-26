@@ -1,0 +1,158 @@
+  <div style="padding-bottom: 50px;" class="container-fluid">
+  <h1 style="padding-left: 700px; color:black;">
+    Welcome, {{user.firstName}} {{user.lastName}}
+  </h1>
+  </div>
+     
+    <div class="container-fluid" >
+
+      <img align="right"; style="padding-left: 50px; margin-top: 50px;" src="/static/DataEntryPic.JPG" class="logo1" alt="logo" width="500" height="350" />
+
+<h6 style="font-size: 1.5em; margin-bottom: -100px; text-align: left;">Enter Data For A New Meal Package</h6>
+      <form action="/data-entry" method="POST" enctype="multipart/form-data">
+      
+        <div class="MP_NameBox">
+          <label for="MP-name" class="first-name DE_Label">Meal Package Name</label>
+          <input
+            type="text"
+            id="MP-name"
+            name = "mpName"
+            value="{{data.formData.mpName}}" 
+            class="MP-name dataEntry"
+          >
+           {{#if data.errors.name}}
+                        <div class="DE_errorMsg"> 
+                          {{data.errors.name}}
+                        </div>
+                      {{/if}}
+        </div>
+
+        <div class="MP_PriceBox" style="margin-top: -5px">
+          <label for="MP-price" class="MP-price DE_Label">Meal Package Price</label>
+          <input
+            type="text"
+            id="MP-price"
+            name = "mpPrice"
+            value="{{data.formData.mpPrice}}" 
+            class="MP-price dataEntry"
+            >
+                   {{#if data.errors.price}}
+                        <div class="DE_errorMsg"> 
+                            {{data.errors.price}}
+                        </div>
+                      {{/if}}
+        </div>
+
+        <div class="MP_DetailBox" style="margin-top: -5px">
+          <label for="MP-detail" class="MP-detail DE_Label">Meal Package Description</label>
+          <input
+            type="text"
+            id="MP-detail"
+            name = "mpDetail"
+            value="{{data.formData.mpDetail}}" 
+            class="MP-detail dataEntry"
+            >
+                   {{#if data.errors.details}}
+                        <div class="DE_errorMsg"> 
+                            {{data.errors.details}}
+                        </div>
+                      {{/if}}
+        </div>
+
+        <div class="MP_CategoryBox" style="margin-top: -5px">
+          <label for="MP-category" class="MP-category DE_Label">Meal Package Food Category</label>
+          <input
+          
+            type="text"
+            id="MP-category"
+            name = "mpCategory"
+            value="{{data.formData.mpCategory}}" 
+            class="MP-category dataEntry"
+            >
+                   {{#if data.errors.category}}
+                        <div class="DE_errorMsg"> 
+                            {{data.errors.category}}
+                        </div>
+                      {{/if}}
+        </div>
+
+        <div class="MP_NumMealsBox" style="margin-top: -5px">
+          <label for="MP-numMeals" class="MP-numMeals DE_Label">Number of Meals</label>
+          <input
+            type="number"
+            id="MP-numMeals"
+            name = "mpNumMeals"
+            value="{{data.formData.mpNumMeals}}" 
+            class="MP-numMeals dataEntry"
+            >
+                   {{#if data.errors.numMeals}}
+                        <div class="DE_errorMsg"> 
+                            {{data.errors.numMeals}}
+                        </div>
+                      {{/if}}
+        </div>
+
+          <input 
+           type="checkbox" 
+           id="MP-topPackage" 
+           name="mpTopPackage" 
+           value="false">
+          <label for="MP-topPackage">List as Top Package</label><br>
+
+        <label for="MP-photo">Upload Meal Photo</label>
+        <input 
+        id="mp-photo" 
+        type="file" 
+        name="photo"
+        accept="image/*"
+        value="{{data.formData.mpPhoto}}"
+         />
+                            {{#if data.errors.photo}}
+                        <div class="DE_PhotoErrorMsg"> 
+                            {{data.errors.photo}}
+                        </div>
+                        {{else}}
+                          <div class="DE_PhotoErrorMsg"> 
+                          {{errorMsg}}
+                        </div>
+                      {{/if}}
+         <br />
+
+        <div class="SubmitBox">
+          <button style="margin-left: 150px; margin-top: 50px;" type="submit" class="submit-btn">Submit</button>
+        </div>
+      </form>
+    </div>
+    <hr>
+    <div class="hero">
+      <img src="/static/SignUpPic.jpg" class="small-heroPic" alt="logo" />
+    </div>
+  {{!-- 
+  <footer>
+
+
+    <div class="footerPayment" style="margin-left: -100px;">
+      <ul>
+        <li class="Payments">
+          <span class="subTitle">We Accept</span>
+          <img src="/static/Payment1.png" height="50" width="75" />
+          <img src="/static/Payment2.png" height="55" width="200" />
+        </li>
+      </ul>
+    </div>
+  
+    <div class="newsletter" style="margin-top: -100px;">
+      <span class="subTitle">Subscribe to receive special coupons, new deals, and chance to win a $25 gift card</span>
+      <form action="https://formspree.io/xyydqgpw" method="POST">
+        <label class="subTitle">
+          Your Email:
+          <input class="emailSub" type="email" name="email" size="40" />
+        </label>
+        <input class="subscribe" type="submit" value="Subscribe" />
+      </form>
+  
+    </div>
+
+</html>
+
+--}}

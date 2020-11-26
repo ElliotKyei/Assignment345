@@ -10,12 +10,8 @@
             class="username boxInput"
             placeholder="Email"
           />
-                        {{#if data.errors.loginEmail}}
-                        <div class="errorMsg"> 
-                          {{data.errors.loginEmail}}
-                        </div>
-                      {{/if}}
         </div>
+        
         <div class="PasswordBox" style="margin-top: 35px">
           <input
             type="password"
@@ -29,6 +25,10 @@
                         <div class="errorMsg"> 
                           {{data.errors.loginPass}}
                         </div>
+                          {{else}}
+                           <div class="errorMsg"> 
+                          {{errorMsg}}
+                        </div>
                       {{/if}}
 
         </div>
@@ -36,7 +36,7 @@
           <button style="margin-left: 25px;" type="submit" class="login-btn">Sign In</button>
         </div>
         <div class="createAccount" style="margin-top: 20px;">
-          <a href="signup.html">Create an account</a>
+          <a href="/signup">Create an account</a>
         </div>
       </form>
     </div>

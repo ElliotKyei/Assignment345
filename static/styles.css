@@ -40,8 +40,7 @@ h1 {
     font-weight: 900;
     word-spacing: 5px;  
     font-size: 1.3em;
-padding-left: 55px;
-text-align: center;
+    text-align: center;
   }
 
   
@@ -298,3 +297,10 @@ padding-left: 150px;
   font-size: 15px;
 }
 
+#createdMeals, #listedMeals{
+  padding-bottom: 125px;
+}
+
+#topMeals{
+  padding-bottom: 25px;
+}

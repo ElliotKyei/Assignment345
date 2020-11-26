@@ -37,6 +37,7 @@ numberOfMeals: 4,
 mealContent: "4 meals of lean cuts of meats, fish, eggs and poultry, which are very high in protein and calories, low in carbs",
 imgURL: "/static/MealPackage1.jpg"
 },
+
 {
 title: "Weight Loss", 
 price: 27.99,
@@ -45,6 +46,7 @@ numberOfMeals: 7,
 mealContent: "7 small meals of very lean and nutritious cuts of meat, whole wheat grains, fruits and vegetables. Each meal is high in protein and low in carbs & calories",
 imgURL: "/static/MealPackage2.jpg"
 },
+
 {
 title: "Keto", 
 price: 25.99,
@@ -94,16 +96,6 @@ module.exports.validateUserForm = function(formData){
     // console.log("errors in validateUserForm()", errors)
     ;
     return errors;
-}
-
-
-module.exports.validateLoginForm = function(formData){
-    var loginErrors = {isValid: true, loginEmail: "", loginPass: ""};
-
-    validateLoginDetails(formData.loginEmail, formData.loginPass, loginErrors);
-    // console.log("errors in validateUserForm()", errors)
-    ;
-    return loginErrors;
 }
 
 function validateUserFormFirstName(input, errors){
@@ -169,30 +161,94 @@ function validateUserFormPassword(input, input2, errors){
     }
 }
 
-function validateLoginDetails(input, input2, loginErrors){
 
+/*
+*************************************************
+            Validate Data Entry Form
+*************************************************
+*/
+
+
+module.exports.validateDataEntryForm = function(formData){
+    var errors = {isValid: true, name: "", price: "", details: "", category: "", numMeals: "", photo: ""};
+  
+    validateDataEntryFormName(formData.mpName, errors);
+    validateDataEntryFormPrice(formData.mpPrice, errors);
+    validateDataEntryFormDetails(formData.mpDetail, errors);
+    validateDataEntryFormCategory(formData.mpCategory, errors);
+    validateDataEntryFormNumMeal(formData.mpNumMeals, errors);
+    validateDataEntryFormPhoto(formData.mpPhoto, errors);
+    // console.log("errors in validateUserForm()", errors)
+    return errors;
+  }
+  
+  function validateDataEntryFormName(input, errors){
     if(!input.trim()){
-        loginErrors.isValid = false;
-        loginErrors.loginEmail += "Email field is required "
+        errors.isValid = false;
+        errors.name += "Meal Package Name is required"
         return;
     }
-
-    if(!input2.trim()){
-        loginErrors.isValid = false;
-        loginErrors.loginPass += "Password field is required "
+  
+    if(input.length<4){ 
+      errors.isValid = false;
+      errors.name += "Meal Package Name must contain at least 4 characters"
+      return;
+  }
+  
+  }
+  
+  function validateDataEntryFormPrice(input, errors){
+    if(!input.trim()){
+        errors.isValid = false;
+        errors.price += "Meal Package Price is required"
         return;
     }
-/*     if (users === undefined || users.length == 0) {
-       return;
+  
+    if(input < 0){ 
+      errors.isValid = false;
+      errors.price += "Please enter a valid price"
+      return;
+  }
+  
+  }
+  
+  function validateDataEntryFormDetails(input, errors){
+    if(!input.trim()){
+        errors.isValid = false;
+        errors.details += "Meal Package Details are required"
+        return;
     }
-    else{
-        users.forEach(function(element) {
-            if (input===element.email || input2===element.password){
-               // console.log("Undefined list not caught")
-                errors.isValid = false;
-                errors.loginPass += "The Email or Password was not correct, try again "
-                return;
-            }
-    });
-} */
-}
+  }
+  
+  function validateDataEntryFormCategory(input, errors){
+    if(!input.trim()){
+        errors.isValid = false;
+        errors.category += "Meal Package Category is required"
+        return;
+    }
+  
+    if(input.length<4){ 
+      errors.isValid = false;
+      errors.category += "Meal Package Category must contain at least 4 characters"
+      return;
+  }
+  }
+  
+  function validateDataEntryFormNumMeal(input, errors){
+    if(!input.trim()){
+      errors.isValid = false;
+      errors.numMeals += "Number of meals are required"
+      return;
+  }
+    if(input < 0){
+        errors.isValid = false;
+        errors.numMeals += "Number of meals must be at least 1"
+        return;
+    }
+  
+  }
+  
+  function  validateDataEntryFormPhoto(input, errors){
+        errors.photo += "Please Upload A Photo Of The Meal Package"
+  
+  }
