@@ -1,130 +1,92 @@
 
-  <div class="hero">
+  <div  class="container-fluid">
     <img src="/static/Meal Kit2.jpg" class="heroPic" alt="logo" />
     <div class="imgText">Fresh Meals Right To Your Door</div>
   </div>
 
   </div>
 
-  <section class="How-It-Works">
+  <section class="How-It-Works container-fluid" >
 
-    <div class="hiwTitle">
-      <h2>How it works</h2>
-
-    </div>
-    <div class="background">
-      <div class="hiw-container">
-        <div class="hiw-workbox1">
-          <div class="hiw-ChooseLabel">
-            <h3 style="padding-left: 10px;">Choose</h3>
-          </div>
-
-          <div class="hiw-ChoosePic">
-            <img src="/static/HiwChoose.jpg" height="200" width="200" />
+      <div style="text-align: center;" class="container-fluid">
+      <h2 style="margin-bottom: 50px;">How it works</h2>
+        <div class="row">
+            <div class="col-md-3">
+            <h3 style="padding-left: 10px;"> <img src="/static/HiwChoose.jpg" height="200" width="200" 
+            style="margin-bottom: 15px;"/>
+            Choose</h3>
             <span class="caption">Choose from a wide selection of meals</span>
-            <img src="/static/Arrow.jpg" class="arrow1" height="100" width="100" />
-          </div>
-
         </div>
 
-        <div class="hiw-workbox2">
-          <div class="hiw-PrepareLabel">
-            <h3 style="padding-left: 10px;">Prepare</h3>
-          </div>
-
-          <div class="hiw-PreparePic">
-            <img src="/static/HiwPrepare.jpg" height="200" width="200" />
+        <div class="col-md-3">
+            <h3 style="padding-left: 10px;"> 
+            <img src="/static/HiwPrepare.jpg" height="200" width="200"
+             style="margin-bottom: 15px;"/>
+             Prepare</h3>
             <span class="caption">All our meals are prepared from scratch specially for you</span>
-            <img src="/static/Arrow.jpg" class="arrow2" height="100" width="100" />
-          </div>
-
         </div>
 
-        <div class="hiw-workbox3">
-          <div class="hiw-DeliverLabel">
-            <h3 style="padding-left: 10px;">Deliver</h3>
-          </div>
-
-          <div class="hiw-DeliveryPic">
-            <img src="/static/HiwDelivery.jpg" height="200" width="200" />
+        <div class="col-md-3">
+           
+            <h3 style="padding-left: 10px;">  <img src="/static/HiwDelivery.jpg" height="200" width="200" 
+            style="margin-bottom: 15px;">
+            Deliver</h3>
             <span class="caption">Meals are delivered right to your door</span>
-            <img src="/static/Arrow.jpg" class="arrow3" height="100" width="100" />
-          </div>
-
         </div>
 
-        <div class="hiw-workbox4">
-          <div class="hiw-EnjoyLabel">
-            <h3 style="padding-left: 10px;">Enjoy</h3>
-          </div>
-
-          <div class="hiw-EnjoyPic">
-            <img src="/static/HiwEnjoy.jpg" height="200" width="200" />
+        <div class="col-md-3">
+            <h3 style="padding-left: 10px;"> <img src="/static/HiwEnjoy.jpg" height="200" width="200" 
+            style="margin-bottom: 15px;"/>
+            Enjoy</h3>
             <span class="caption">Enjoy your meals</span>
-          </div>
-
         </div>
+
+         </div>
       </div>
-    </div>
-  </section>
+ 
+  </section><br>
 
-  <section class="Top-Meal-Orders">
+  <section style="margin-bottom: 20px;" class="container-fluid">
 
-    <div class="Top-Meal-Title">
-      <h2>Our Top Meal Orders</h2>
-    </div>
-
-    <div class="top-packages-container">
-
-      <div class="meal-1">
-        <div class="meal-1-Label">
-          <h3 style="font-size: 25px;">Chicken Breast with Tomatoes</h3>
+      <h2 style="margin-bottom: 50px;">Our Top Meal Orders</h2>
+    <div style="text-align: center;" class="container-fluid">
+    
+       <div class="row">
+        <div class="col-md-3">
+          <h3 >{{data.0.title}}</h3>
+          <img src="{{data.0.imgURL}}" height="200" width="200" />
+          <span class="caption-meals">${{data.0.price}}</span>
         </div>
 
-        <div class="meal-1-Pic">
-          <img src="/static/Meal1.jpg" height="200" width="300" />
-          <span class="caption-meals">$10.99</span>
-
+         <div class="col-md-3">
+          <h3>{{data.1.title}}</h3>
+          <img src="{{data.1.imgURL}}" height="200" width="200" />
+          <span class="caption-meals">${{data.1.price}}</span>
         </div>
 
+         <div class="col-md-3">
+          <h3>{{data.2.title}}</h3>
+          <img src="{{data.2.imgURL}}" height="200" width="200" />
+          <span class="caption-meals">${{data.2.price}}</span>
+        </div>
+
+         <div class="col-md-3">
+          <h3>{{data.3.title}}</h3>
+          <img src="{{data.3.imgURL}}" height="200" width="200" />
+          <span class="caption-meals">${{data.3.price}}</span>
+        </div>
+
+                 {{#each dataEntry}}
+                 {{#if dataEntry.isTopPackage}}
+           <div class="col-md-3" id="createdMeals">
+            <h5>{{title}}</h5>
+          <img src="/public/photos/{{imageURL}}" height="250" width="250" />
+          <span class="caption-package">{{mealContent}}<br /><br />${{price}}</span>
+        </div>
+        {{/if}}
+      {{/each}}
+       </div>
       </div>
-
-      <div class="meal-2">
-        <div class="meal-2-Label">
-          <h3 style="font-size: 25px;">Pea and Spinach Carbonara</h3>
-        </div>
-
-        <div class="meal-2-Pic">
-          <img src="/static/Meal2.jpg" height="200" width="300" />
-          <span class="caption-meals">$10.99</span>
-        </div>
-      </div>
-
-      <div class="meal-3">
-        <div class="meal-3-Label">
-          <h3 style="font-size: 25px;">Potato Salad with Mackeral</h3>
-        </div>
-
-        <div class="meal-3-Pic">
-          <img src="/static/Meal3.jpg" height="200" width="300" />
-          <span class="caption-meals">$11.99</span>
-        </div>
-
-      </div>
-
-      <div class="meal-4">
-        <div class="meal-4-Label">
-          <h3 style="font-size: 25px;">Beef and Vegetable Stir Fry</h3>
-        </div>
-
-        <div class="meal-4-Pic">
-          <img src="/static/Meal4.jpg" height="200" width="300" />
-          <span class="caption-meals">$12.99</span>
-        </div>
-
-      </div>
-
-    </div>
 
   </section><br>
 </body>
