@@ -1,14 +1,15 @@
 /*********************************************************************************
-* WEB322 – Assignment 02
+* WEB322 – Assignment 03
 * I declare that this assignment is my own work in accordance with Seneca Academic Policy. No part
 * of this assignment has been copied manually or electronically from any other source
 * (including 3rd party web sites) or distributed to other students.
 *
-* Name: Elliot Kyei Student ID: 122982192 Date: 10/27/2020 
+* Name: Elliot Kyei 
+  Student ID: 122982192 
+  Date: 11/26/2020 
 *
-* Online (Heroku, https://...) Link: https://gentle-depths-73284.herokuapp.com/
-*
-* GitHub or Bitbucket repo Link: https://github.com/ElliotKyei/Assignment-2
+* Online (Heroku) Link: https://mysterious-crag-33945.herokuapp.com/
+* GitHub or Bitbucket repo Link: https://github.com/ElliotKyei/Assignment345
 *
 ********************************************************************************/
 
@@ -91,24 +92,22 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.get("/", function(req,res){
+  let allMeals = MealPackageModel.getAllMealPackages();
+  allMeals.then(function (result) {
   if (req.session.user){
     if(req.session.user.role === "customer"){
-      let test = MealPackageModel.getAllMealPackages();
-
-      test.then(function (result) {
       res.render("userDashboard", {
         data: dataService.getTopMealPackages(),
+        dataEntry: result,
         user: req.session.user,
-        dataEntry: result
-    });
-    }).catch(function (err) {
-      console.log(err);
+        layout: 'customerLayout'
     });
   }
 
   else if (req.session.user.role === "data entry"){
     res.render('userDashboard', {
       data: dataService.getTopMealPackages(),
+      dataEntry: result,
       user: req.session.user,
       layout: 'dataEntryLayout'
   });
@@ -120,13 +119,16 @@ app.get("/", function(req,res){
     data: dataService.getTopMealPackages()
 });
   }
+}).catch(function (err) {
+  console.log(err);
+});
 });
 
 app.get("/mealpackage",  (req, res) => {
 
-  let test = MealPackageModel.getAllMealPackages();
+  let allMeals = MealPackageModel.getAllMealPackages();
 
-  test.then(function (result) {
+  allMeals.then(function (result) {
   
   if (req.session.user){
   if (req.session.user.role === "data entry"){
@@ -260,9 +262,9 @@ app.post("/signup-user",  (req, res) => {
 
         if (req.session.user.role === "customer"){
           
- let test = MealPackageModel.getAllMealPackages();
+ let allMeals = MealPackageModel.getAllMealPackages();
 
- test.then(function (result) {
+ allMeals.then(function (result) {
       res.render("userDashboard", {
         data: dataService.getTopMealPackages(),
         user: req.session.user,
@@ -351,9 +353,9 @@ app.get("/logout", function(req, res) {
 });
   
 app.get("/userDashboard", ensureLogin, (req, res) => {
-  let test = MealPackageModel.getAllMealPackages();
+  let allMeals = MealPackageModel.getAllMealPackages();
 
-  test.then(function (result) {
+  allMeals.then(function (result) {
   res.render("userDashboard", {
     data: dataService.getTopMealPackages(),
     user: req.session.user,
@@ -374,9 +376,9 @@ app.get("/dataEntryDashboard", ensureLogin, (req, res) => {
 
 app.get("/createdMealPackages", ensureLogin, (req, res) => {
 
- let test = MealPackageModel.getAllMealPackages();
+ let allMeals = MealPackageModel.getAllMealPackages();
 
- test.then(function (result) {
+ allMeals.then(function (result) {
  
   res.render("createdMealPackages", {
     user: req.session.user,
