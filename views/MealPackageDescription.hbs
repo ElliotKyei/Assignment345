@@ -1,0 +1,83 @@
+
+    <div style="text-align: center; padding: 25px; padding-bottom: 150px;" class="container-fluid" >
+
+      <img align="left" src="/public/photos/{{data.imageURL}}" class="logo1" alt="logo" width="450" height="450" />
+        <div style="padding-left: 75px; padding-top: 25px" class="row">
+             <div class="col">
+                 <form action="/add-to-cart" method="POST">
+
+                   <input type="hidden" id="itemImg" name="imgURL" value="{{data.imageURL}}">
+
+                   <label for="itemTitle" 
+                   style="font-size: 2.5em; text-align: center; color: rgb(53, 21, 29);">
+                  {{data.title}} Package
+                   </label><br/>
+
+                    <input type="hidden" id="itemTitle" name="title" value="{{data.title}}">
+
+                 <label 
+                 for="itemPrice" 
+                 style="font-size: 1.3em; margin-top: -150px; text-align: center; color: rgb(53, 21, 29);">
+                 {{data.price}}
+                 </label>
+
+                 <input type="hidden" id="itemPrice" name="price" value="{{data.price}}">
+
+                    <span for="description" class="caption-package">{{data.mealContent}}<br />
+                     <input type="hidden" id="itemContent" name="mealContent" value="{{data.mealContent}}">
+
+                    <span class="caption-package">Number of Meals: {{data.numberOfMeals}}<br><br>
+
+                    
+                 <label 
+                 for="itemQuantity" 
+                 style="font-size: 1em; margin-top: -150px; text-align: center; color: rgb(53, 21, 29);">
+                 Quantity
+                 </label>
+
+                 <input type="number" id="itemQuantity" name="quantity" min="1" value="{{data.quantity}}">
+
+                 {{#if errors.quantity}}
+                        <div style="left: 200px;" class="errorMsg"> 
+                          {{errors.quantity}}
+                        </div>
+                      {{/if}}
+
+                     <button style="margin-top: 60px;" type="submit" class="login-btn">Add to order</button>
+                     </form>
+           </div>
+        </div>
+    </div>
+
+    <div class="hero">
+      <img src="/static/SignUpPic.jpg" class="small-heroPic" alt="logo" />
+    </div>
+  {{!-- 
+  <footer>
+
+
+    <div class="footerPayment" style="margin-left: -100px;">
+      <ul>
+        <li class="Payments">
+          <span class="subTitle">We Accept</span>
+          <img src="/static/Payment1.png" height="50" width="75" />
+          <img src="/static/Payment2.png" height="55" width="200" />
+        </li>
+      </ul>
+    </div>
+  
+    <div class="newsletter" style="margin-top: -100px;">
+      <span class="subTitle">Subscribe to receive special coupons, new deals, and chance to win a $25 gift card</span>
+      <form action="https://formspree.io/xyydqgpw" method="POST">
+        <label class="subTitle">
+          Your Email:
+          <input class="emailSub" type="email" name="email" size="40" />
+        </label>
+        <input class="subscribe" type="submit" value="Subscribe" />
+      </form>
+  
+    </div>
+
+</html>
+
+--}}

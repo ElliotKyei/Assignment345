@@ -46,42 +46,19 @@
  
   </section><br>
 
-  <section style="margin-bottom: 20px;" class="container-fluid">
+  <section style="margin-bottom: -50px;" class="container-fluid">
 
       <h2 style="margin-bottom: 50px;">Our Top Meal Orders</h2>
     <div style="text-align: center;" class="container-fluid">
     
        <div class="row">
-        <div class="col-md-3">
-          <h3 >{{data.0.title}}</h3>
-          <img src="{{data.0.imgURL}}" height="200" width="200" />
-          <span class="caption-meals">${{data.0.price}}</span>
-        </div>
-
-         <div class="col-md-3">
-          <h3>{{data.1.title}}</h3>
-          <img src="{{data.1.imgURL}}" height="200" width="200" />
-          <span class="caption-meals">${{data.1.price}}</span>
-        </div>
-
-         <div class="col-md-3">
-          <h3>{{data.2.title}}</h3>
-          <img src="{{data.2.imgURL}}" height="200" width="200" />
-          <span class="caption-meals">${{data.2.price}}</span>
-        </div>
-
-         <div class="col-md-3">
-          <h3>{{data.3.title}}</h3>
-          <img src="{{data.3.imgURL}}" height="200" width="200" />
-          <span class="caption-meals">${{data.3.price}}</span>
-        </div>
 
                  {{#each dataEntry}}
                  {{#if isTopPackage}}
            <div class="col-md-3" id="createdMeals">
-            <h5>{{title}}</h5>
-          <img src="/public/photos/{{imageURL}}" height="250" width="250" />
-          <span class="caption-package">{{mealContent}}<br /><br />${{price}}</span>
+            <h3>{{title}}</h3>
+          <img src="/public/photos/{{imageURL}}" height="200" width="200" />
+          <span class="caption-meals">${{price}}</span>
         </div>
         {{/if}}
       {{/each}}

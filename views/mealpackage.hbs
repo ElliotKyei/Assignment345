@@ -3,7 +3,7 @@
     <div class="imgText">Our Top Meal Packages</div>
   </div>
 
-  <section  style="margin-bottom: 20px;" class="package-section">
+  <section  style="margin-bottom: -50px;" class="package-section">
 
 
     <div class="top-packages">
@@ -13,40 +13,17 @@
     
     <div style="text-align: center;" class="container-fluid" >
       <div class="row">
-        <div class="col-md-3" id="listedMeals">
-            <h5>{{data.0.title}}</h5>
-          <img src="{{data.0.imgURL}}" height="250" width="250" />
-          <span class="caption-package">{{data.0.mealContent}}<br /><br />${{data.0.price}}
-          </span>
-        </div>
-
-      <div class="col-md-3" id="listedMeals">
-            <h5>{{data.1.title}}</h5>
-          <img src="{{data.1.imgURL}}" height="250" width="250" />
-          <span class="caption-package">{{data.1.mealContent}}<br /><br />${{data.1.price}}
-          </span>
-        </div>
-
-        <div class="col-md-3" id="listedMeals">
-            <h5>{{data.2.title}}</h5>
-          <img src="{{data.2.imgURL}}" height="250" width="250" />
-          <span class="caption-package">{{data.2.mealContent}}<br /><br />${{data.2.price}}
-          </span>
-        </div>
-
-        <div class="col-md-3" id="listedMeals">
-            <h5>{{data.3.title}}</h5>
-          <img src="{{data.3.imgURL}}" height="250" width="250" />
-          <span class="caption-package">{{data.3.mealContent}}<br /><br />${{data.3.price}}
-          </span>
-        </div>
 
          {{#each dataEntry}}
+         {{#unless isTopPackage}}
            <div class="col-md-3" id="createdMeals">
             <h5>{{title}}</h5>
+            <a href="/mealPackage/{{_id}}">
           <img src="/public/photos/{{imageURL}}" height="250" width="250" />
+          </a>
           <span class="caption-package">{{mealContent}}<br /><br />${{price}}</span>
         </div>
+        {{/unless}}
       {{/each}}
 
       </div>

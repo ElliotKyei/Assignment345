@@ -1,0 +1,43 @@
+
+  <section  style="margin-bottom: 20px; margin-left: -100px;" class="shopping-cart-section">
+      
+    <div style="padding-bottom: 50px;" class="container-fluid">
+
+      <h1 style="color: black; text-align:left; padding: 20px;">Shopping Cart</h1><br>
+
+<table class="cartTable table">
+                        <tr>
+                            <th>Meal Package</th>
+                             <th>Title</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
+
+        {{#each data}}
+           <tr>
+              <td><img src="/public/photos/{{imageURL}}" height="150" width="150" /></td>
+              <td>{{title}}</td>
+              <td>{{quantity}}</td>
+              <td>${{price}}</td>
+              <td>${{total}}</td>
+           </tr>
+       {{else}}
+              
+                 <td colspan="8">Shopping cart is empty</td>
+      {{/each}}
+  </table>
+  
+  {{#if data}}
+   </div><br>
+      <h5 style="font-size: 1.3em;">Total ${{cart.total}}</h5>
+      <form action="/checkout" method="POST">
+            <button style="margin-left: 475px;" type="submit" class="checkout-btn">Place Order</button>
+            </form>
+{{/if}}
+    
+  </section>
+
+  {{!--
+  <h5 style="font-size: 1.3em;">Total ${{cart.total}}</h5>
+  --}}

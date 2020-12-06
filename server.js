@@ -61,7 +61,7 @@ mongoose.connection.on("open", () => {
 
 app.engine('.hbs', exphbs({ 
   extname: '.hbs',
-  defaultLayout: 'main'
+  defaultLayout: 'main',
 }));
 
 app.set("view engine", ".hbs");
@@ -97,7 +97,6 @@ app.get("/", function(req,res){
   if (req.session.user){
     if(req.session.user.role === "customer"){
       res.render("userDashboard", {
-        data: dataService.getTopMealPackages(),
         dataEntry: result,
         user: req.session.user,
         layout: 'customerLayout'
@@ -106,7 +105,6 @@ app.get("/", function(req,res){
 
   else if (req.session.user.role === "data entry"){
     res.render('userDashboard', {
-      data: dataService.getTopMealPackages(),
       dataEntry: result,
       user: req.session.user,
       layout: 'dataEntryLayout'
@@ -116,7 +114,7 @@ app.get("/", function(req,res){
 
   else{
   res.render('home', {
-    data: dataService.getTopMealPackages()
+    dataEntry: result
 });
   }
 }).catch(function (err) {
@@ -133,7 +131,6 @@ app.get("/mealpackage",  (req, res) => {
   if (req.session.user){
   if (req.session.user.role === "data entry"){
     res.render('mealpackage', {
-      data: dataService.getMealPackages(),
       dataEntry: result,
       user: req.session.user,
       layout: 'dataEntryLayout'
@@ -141,7 +138,6 @@ app.get("/mealpackage",  (req, res) => {
   }
   else if (req.session.user.role === "customer"){
     res.render('mealpackage', {
-      data: dataService.getMealPackages(),
       dataEntry: result,
       user: req.session.user,
       layout: 'customerLayout'
@@ -151,7 +147,6 @@ app.get("/mealpackage",  (req, res) => {
 
 else{
   res.render('mealpackage', {
-      data: dataService.getMealPackages(),
       dataEntry: result
   });
 }
@@ -166,6 +161,22 @@ app.get("/login",  (req, res) => {
       data: { },
 
   });
+});
+
+app.get("/mealPackage/:id", ensureLogin, (req, res) => {
+
+  req.session.user.selectedItem = req.params.id;
+  MealPackageModel.getMealPackageById(req.params.id).then((mpData)=>{
+
+    res.render('MealPackageDescription', {
+      data: mpData,
+      layout: 'customerLayout'
+    }); 
+  })
+  .catch((err)=>{
+      res.status(500).end();
+  })
+  
 });
 
   app.get("/signup",  (req, res) => {
@@ -193,7 +204,8 @@ app.post("/signup-user",  (req, res) => {
         firstName: req.body.firstname,
         lastName: req.body.lastname,
         email: req.body.email,
-        password: passwordHash
+        password: passwordHash,
+        role: 'customer'
       });
 
       UserModel.addUser(newUser);
@@ -245,8 +257,10 @@ app.post("/signup-user",  (req, res) => {
 
   UserModel.findOne({"email": userEmail}, function(error, user) { 
     if (user){
+
     console.log(user); 
-    console.log(user.password); 
+    console.log(user.password);
+
     let validPass = bcrypt.compareSync(userPassword, user.password);
 
     console.log("Bool = " +validPass); 
@@ -260,13 +274,14 @@ app.post("/signup-user",  (req, res) => {
         role: user.role
       };
 
-        if (req.session.user.role === "customer"){
+        if(req.session.user.role && req.session.user.role==="customer"){
+
+          req.session.user.cart = { items: [], total: 0 }
           
  let allMeals = MealPackageModel.getAllMealPackages();
 
  allMeals.then(function (result) {
       res.render("userDashboard", {
-        data: dataService.getTopMealPackages(),
         user: req.session.user,
         layout: 'customerLayout',
         dataEntry: result
@@ -276,12 +291,15 @@ app.post("/signup-user",  (req, res) => {
   });
   }
 
-      else if (req.session.user.role === "data entry"){
+      else if (req.session.user.role && req.session.user.role === "data entry"){
       res.render("dataEntryDashboard", {
         user: req.session.user,
         layout: 'dataEntryLayout'
     });
     } 
+  }
+  else {
+    res.render("login", { errorMsg: "Sorry, you entered the wrong email and/or password. Please try again"});
   }
   }
   else {
@@ -291,9 +309,10 @@ app.post("/signup-user",  (req, res) => {
 
 });
 
-app.post("/data-entry", upload.single("photo"), ensureLogin, (req, res) => {
+app.post("/data-entry", upload.single("photo"), ensureDataClerk, (req, res) => {
   const dataEntryFormData = req.body;
   const formFile = req.file;
+  console.log("NUM MEALS" +req.body.mpNumMeals)
 
   var dataEntryErrors = dataService.validateDataEntryForm(dataEntryFormData)
 
@@ -318,7 +337,7 @@ MealPackageModel.findOne({"title": req.body.mpName}, function(error, mealPackage
         price: req.body.mpPrice,
         mealContent: req.body.mpDetail,
         category: req.body.mpCategory,
-        numberofMeals: req.body.mpNumMeals,
+        numberOfMeals: req.body.mpNumMeals,
         isTopPackage: req.body.mpTopPackage ? true : false,
         imageURL: formFile.originalname
        } 
@@ -332,7 +351,7 @@ MealPackageModel.findOne({"title": req.body.mpName}, function(error, mealPackage
       price: req.body.mpPrice,
       mealContent: req.body.mpDetail,
       category: req.body.mpCategory,
-      numberofMeals: req.body.mpNumMeals,
+      numberOfMeals: req.body.mpNumMeals,
       isTopPackage: req.body.mpTopPackage ? true : false,
       imageURL: formFile.originalname
     });
@@ -347,17 +366,75 @@ res.render('dataEntrySuccess', {
   }
 });
 
+app.post("/add-to-cart", ensureCustomer, (req, res) => {
+
+  var newItem = {
+    title: req.body.title, 
+    imageURL: req.body.imgURL,
+    mealContent: req.body.mealContent, 
+    quantity: req.body.quantity, 
+    price: req.body.price,
+    total: req.body.quantity * req.body.price
+    };
+
+  req.session.user.cart.items.push(newItem);
+  req.session.user.cart.total += newItem.total;
+
+  res.redirect("/ShoppingCart");
+});
+
+app.post("/checkout",  ensureCustomer, (req, res) => {
+
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'FreshFoodFix.2020@gmail.com',
+          pass: 'freshfood123/'
+        }
+      });
+      
+      var mailOptions = {
+        from: 'FreshFoodFix.2020@gmail.com',
+        to:  req.session.user.email,
+        subject: 'Order Completed',
+        text: dataService.emailOrder(req.session.user)
+      };
+    
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+
+      req.session.user.cart.items.splice(0, req.session.user.cart.items.length)
+      req.session.user.cart.total = 0;
+      res.render('CheckoutSuccess', {
+        layout: false
+  });
+
+  });
+
 app.get("/logout", function(req, res) {
   req.session.reset();
   res.redirect("/login");
 });
   
+app.get("/ShoppingCart", ensureCustomer, (req, res) => {
+  res.render("ShoppingCart", {
+    user: req.session.user,
+    data: req.session.user.cart.items,
+    cart: req.session.user.cart,
+    layout: 'customerLayout'
+  });
+});
+
 app.get("/userDashboard", ensureLogin, (req, res) => {
   let allMeals = MealPackageModel.getAllMealPackages();
 
   allMeals.then(function (result) {
   res.render("userDashboard", {
-    data: dataService.getTopMealPackages(),
     user: req.session.user,
     dataEntry: result
 });
@@ -366,15 +443,15 @@ app.get("/userDashboard", ensureLogin, (req, res) => {
 });
 });
 
-app.get("/dataEntryDashboard", ensureLogin, (req, res) => {
+app.get("/dataEntryDashboard", ensureDataClerk, (req, res) => {
   res.render("dataEntryDashboard", {
     user: req.session.user,
     layout: 'dataEntryLayout'
-});
+  });
 });
 
 
-app.get("/createdMealPackages", ensureLogin, (req, res) => {
+app.get("/createdMealPackages", ensureDataClerk, (req, res) => {
 
  let allMeals = MealPackageModel.getAllMealPackages();
 
@@ -399,6 +476,21 @@ function ensureLogin(req, res, next) {
       next();
     }
   }
+  function ensureCustomer(req, res, next) {
+    if (!req.session.user.role || req.session.user.role != "customer") {
+      res.redirect("/login");
+    } else {
+      next();
+    }
+  }
   
+  function ensureDataClerk(req, res, next) {
+    if (!req.session.user.role ||req.session.user.role != "data entry") {
+      res.redirect("/login");
+    } else {
+      next();
+    }
+  }
+
   http.createServer(app).listen(HTTP_PORT, onHttpStart);
   https.createServer(https_options, app).listen(HTTPS_PORT, onHttpsStart);
