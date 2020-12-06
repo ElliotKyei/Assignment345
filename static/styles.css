@@ -32,6 +32,7 @@ h1 {
     text-align: center;
     padding: 10px;
     font-weight: bolder;
+    
   }
   h3 {
     font-family: 'Montserrat', sans-serif;
@@ -41,6 +42,7 @@ h1 {
     word-spacing: 5px;  
     font-size: 1.3em;
     text-align: center;
+
   }
 
   
@@ -85,6 +87,13 @@ text-align: center;
     color:gray;
     background-color:gray
   }
+  
+  .cartTable { 
+    padding: 50px;
+    border-spacing: 150px;
+    border-collapse: collapse;
+}
+
 
   ul.navigation {
     text-align: center;
@@ -142,6 +151,11 @@ margin-bottom: 20px;
   font-weight: bolder;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+.cartImg {
+  position: absolute;
+  right:200px;
 }
   
   li {
@@ -214,6 +228,13 @@ margin-bottom: 20px;
   padding-top: 15px;
   font-family: Verdana, Tahoma, sans-serif;
   display: block;
+  font-size: 1em;
+  color:rgb(53, 21, 29);
+} 
+
+.cart-caption {
+  padding-top: 15px;
+  font-family: Verdana, Tahoma, sans-serif;
   font-size: 1em;
   color:rgb(53, 21, 29);
 } 

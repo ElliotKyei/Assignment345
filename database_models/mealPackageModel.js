@@ -31,7 +31,21 @@ module.exports.getAllMealPackages = function(){
           reject(err);
       });
   })
-}, 
+},
+
+module.exports.getMealPackageById = function(mealPackageId){
+  return new Promise(function(resolve,reject){
+
+      MealPackages.findOne({_id: mealPackageId})
+      .exec()
+      .then((mealPackage) => {
+          resolve(mealPackage.toObject());
+      })
+      .catch((err)=>{
+          reject(err);
+      });
+  })
+},
 
 module.exports.updateMealPackageByTitle = function (companyId, companyData) {
   return new Promise(function (resolve, reject) {
