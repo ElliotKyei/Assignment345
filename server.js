@@ -6,7 +6,7 @@
 *
 * Name: Elliot Kyei 
   Student ID: 122982192 
-  Date: 11/26/2020 
+  Date: 12/10/2020 
 *
 * Online (Heroku) Link: https://mysterious-crag-33945.herokuapp.com/
 * GitHub or Bitbucket repo Link: https://github.com/ElliotKyei/Assignment345
@@ -17,6 +17,7 @@ var path = require("path");
 var express = require("express");
 const multer = require("multer");
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv').config()
 const dataService = require('./data-service');
 const clientSessions = require("client-sessions");
 
@@ -41,8 +42,8 @@ const https_options = {
 
 const UserModel = require("./database_models/userModel");
 const MealPackageModel = require("./database_models/mealPackageModel");
-let pass = encodeURIComponent("Azure2761!");
-const connectionString = `mongodb+srv://dbUser:${pass}@users.1eqa3.mongodb.net/dbUser?retryWrites=true&w=majority`;
+
+const connectionString = process.env.MONGODB_CONN_STR;
 
 
 
@@ -68,7 +69,7 @@ app.set("view engine", ".hbs");
 
 app.use(clientSessions({
   cookieName: "session", 
-  secret: "assignment345_web322_/./.././Elliot_Kyei_;.,", 
+  secret: process.env.SECRET, 
   duration: 5 * 60 * 1000, 
   activeDuration: 5 * 1000 * 60,
 }));
@@ -164,7 +165,7 @@ app.get("/login",  (req, res) => {
 });
 
 app.get("/mealPackage/:id", ensureLogin, (req, res) => {
-
+if (req.session.user.role == "customer"){
   req.session.user.selectedItem = req.params.id;
   MealPackageModel.getMealPackageById(req.params.id).then((mpData)=>{
 
@@ -176,7 +177,11 @@ app.get("/mealPackage/:id", ensureLogin, (req, res) => {
   .catch((err)=>{
       res.status(500).end();
   })
-  
+}
+else{
+  req.session.reset();
+  res.redirect("/login");
+}
 });
 
   app.get("/signup",  (req, res) => {
@@ -197,18 +202,8 @@ app.post("/signup-user",  (req, res) => {
    
   } 
   else {
-    console.log(req.body.password)
-      let passwordHash = bcrypt.hashSync(req.body.password);
 
-        let newUser = new UserModel({
-        firstName: req.body.firstname,
-        lastName: req.body.lastname,
-        email: req.body.email,
-        password: passwordHash,
-        role: 'customer'
-      });
-
-      UserModel.addUser(newUser);
+      UserModel.addUser(req.body);
 
       var transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -249,8 +244,6 @@ app.post("/signup-user",  (req, res) => {
     const userEmail = req.body.loginEmail;
     const userPassword = req.body.loginPass;
 
-    console.log("USER EMAIL " +userEmail);
-
     if(userEmail === "" || userPassword === "") {
      return res.render('login', { errorMsg: "Missing email and/or password. Please try again"});  
   } 
@@ -258,12 +251,7 @@ app.post("/signup-user",  (req, res) => {
   UserModel.findOne({"email": userEmail}, function(error, user) { 
     if (user){
 
-    console.log(user); 
-    console.log(user.password);
-
     let validPass = bcrypt.compareSync(userPassword, user.password);
-
-    console.log("Bool = " +validPass); 
     
     if(userEmail === user.email && validPass === true){
       req.session.user = {
@@ -312,7 +300,6 @@ app.post("/signup-user",  (req, res) => {
 app.post("/data-entry", upload.single("photo"), ensureDataClerk, (req, res) => {
   const dataEntryFormData = req.body;
   const formFile = req.file;
-  console.log("NUM MEALS" +req.body.mpNumMeals)
 
   var dataEntryErrors = dataService.validateDataEntryForm(dataEntryFormData)
 
@@ -331,32 +318,11 @@ app.post("/data-entry", upload.single("photo"), ensureDataClerk, (req, res) => {
 MealPackageModel.findOne({"title": req.body.mpName}, function(error, mealPackage) { 
 
   if (mealPackage){
-    MealPackageModel.updateOne(
-      {title: req.body.mpName},
-      { $set: { 
-        price: req.body.mpPrice,
-        mealContent: req.body.mpDetail,
-        category: req.body.mpCategory,
-        numberOfMeals: req.body.mpNumMeals,
-        isTopPackage: req.body.mpTopPackage ? true : false,
-        imageURL: formFile.originalname
-       } 
-    }
-    ).exec();
+    MealPackageModel.updateMeal(req.body, formFile.originalname)
   }
 
   else{
-    let newMealPackage = new MealPackageModel({
-      title: req.body.mpName,
-      price: req.body.mpPrice,
-      mealContent: req.body.mpDetail,
-      category: req.body.mpCategory,
-      numberOfMeals: req.body.mpNumMeals,
-      isTopPackage: req.body.mpTopPackage ? true : false,
-      imageURL: formFile.originalname
-    });
-
-    MealPackageModel.addMealPackage(newMealPackage);
+    MealPackageModel.addMealPackage(req.body, formFile.originalname);
   }
 });
 

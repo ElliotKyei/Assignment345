@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var bcrypt = require('bcryptjs');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
@@ -15,7 +16,7 @@ var UserSchema = new Schema({
     }   
   });
   
-const User = mongoose.model("Users", UserSchema);
+var User = mongoose.model("Users", UserSchema);
 module.exports =  User;
 
 module.exports.getAllUsers = function(){
@@ -50,10 +51,19 @@ module.exports.getUserByEmail = function(userEmail){
 })
 },
 
-module.exports.addUser = function (User) {
+module.exports.addUser = function (data) {
   return new Promise(function (resolve, reject) {
-      
-    User.save((err, addedUser) => {
+    let passwordHash = bcrypt.hashSync(data.password);
+
+    let newUser = new User({
+    firstName: data.firstname,
+    lastName: data.lastname,
+    email: data.email,
+    password: passwordHash,
+    role: 'customer'
+  });
+
+    newUser.save((err, addedUser) => {
           if(err) {
               reject(err);
           } else {
