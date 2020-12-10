@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+mongoose.Promise = global.Promise;
 
 var MealPackageSchema = new Schema({
 
@@ -47,31 +48,35 @@ module.exports.getMealPackageById = function(mealPackageId){
   })
 },
 
-module.exports.updateMealPackageByTitle = function (companyId, companyData) {
-  return new Promise(function (resolve, reject) {
-      if (Object.keys(companyData).length > 0) { // if there is data to update
-          Company.update({ _id: companyId }, // replace the current company with data from companyData
-              {
-                  $set: companyData
-              },
-              { multi: false })
-              .exec()
-              .then((data) => {
-                  resolve(companyId);
-              })
-              .catch((err) => {
-                  reject(err);
-              });
-      } else {
-          resolve();
-      }
-  });
+module.exports.updateMeal = function (data, file) {
+    MealPackages.updateOne(
+      {title: data.mpName},
+      { $set: { 
+        price: data.mpPrice,
+        mealContent: data.mpDetail,
+        category: data.mpCategory,
+        numberOfMeals: data.mpNumMeals,
+        isTopPackage: data.mpTopPackage ? true : false,
+        imageURL: file
+       } 
+    }
+    ).exec();
 },
 
-module.exports.addMealPackage = function (mealPackage) {
+module.exports.addMealPackage = function (data, file) {
   return new Promise(function (resolve, reject) {
       
-    mealPackage.save((err, addedMeal) => {
+    let newMealPackage = new MealPackages({
+      title: data.mpName,
+      price: data.mpPrice,
+      mealContent: data.mpDetail,
+      category: data.mpCategory,
+      numberOfMeals: data.mpNumMeals,
+      isTopPackage: data.mpTopPackage ? true : false,
+      imageURL: file
+    });
+
+    newMealPackage.save((err, addedMeal) => {
           if(err) {
               reject(err);
               
